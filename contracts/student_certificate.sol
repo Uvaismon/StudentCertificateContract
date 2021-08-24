@@ -11,7 +11,7 @@ contract StudentCertificate {
         _;
     }
 
-    constructor() {
+    constructor() public {
         owner = msg.sender;
     }
     
