@@ -17,6 +17,12 @@ contract StudentCertificate {
             revert("Permission denied. Only admin can perform this operation");
         _;
     }
+    
+    modifier onlyNewCertificate(uint certificate_id) {
+        if(bytes(certificate_hash[certificate_id]).length != 0)
+            revert("Certificate hash already exists");
+        _;
+    }
 
     constructor() public {
         owner = msg.sender;
@@ -26,12 +32,21 @@ contract StudentCertificate {
     function add_admin(address admin_address) public onlyOwner {
         admin[admin_address] = 1;
     }
+
+    function remove_admin(address admin_address) public onlyOwner {
+        admin[admin_address] = 0;
+    }
     
     function get_hash(uint certificate_id) public view returns(string memory) {
         return certificate_hash[certificate_id];
     }
 
-    function add_hash(uint certificate_id, string memory hash) public onlyAdmin{
+    function add_hash(uint certificate_id, string memory hash) public onlyAdmin onlyNewCertificate(certificate_id) {
         certificate_hash[certificate_id] = hash;
     }
+
+    function get_owner() public view returns(address) {
+        return owner;
+    }
+
 }

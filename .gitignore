@@ -4,3 +4,4 @@ test/
 */test_*
 .idea/
 venv/
+log.csv

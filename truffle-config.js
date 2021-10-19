@@ -10,14 +10,15 @@ module.exports = {
     rinkeby: {
       provider: () =>
         new HDWalletProvider(
-          process.env.ACCOUNT_PRIVATE_KEY,
-          `https://rinkeby.infura.io/v3/` + process.env.RINKEBY_KEY
+          '1c0164ad06573657d2acaf250a6d7c55b30eb12562d2408cdfb618a108d0c295',
+          'https://rinkeby.infura.io/v3/afb8a4a2e1274b8db453e3d621f137b3'
         ),
       network_id: 4,
-      gas: 5500000,
+      gas: 2100000,
       confirmations: 2,
       timeoutBlocks: 200,
       skipDryRun: true,
+      from: '0x92BE98536C2DA43E09c1753069348C69601788e0',
     }
   }
 };
